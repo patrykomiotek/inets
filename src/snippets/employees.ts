@@ -42,6 +42,22 @@ type MyPartial<T> = {
 };
 type PartialUser = MyPartial<User>;
 
+interface Config1 {
+  host?: string;
+  port?: number;
+}
+
+interface Config2 {
+  host: string;
+  port?: number;
+}
+
+// type RequiredConfig = Required<Config1>;
+type MyRequired<T> = {
+  [K in keyof T]-?: T[K];
+};
+type RequiredConfig = MyRequired<Config1>;
+
 type UserKeys = keyof User;
 // declare const userKeys: UserKeys = 'name';
 
