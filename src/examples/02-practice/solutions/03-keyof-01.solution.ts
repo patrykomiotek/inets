@@ -10,7 +10,7 @@ function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
 it('Should return proper value based on object key', () => {
   const person = { name: 'Alice', age: 30, city: 'New York' };
 
-  expect(getProperty(person, 'name')).toBe('Alice');
+  expect(getProperty(person, 'age')).toBe('Alice');
   expect(getProperty(person, 'age')).toBe(30);
   expect(getProperty(person, 'city')).toBe('New York');
   // @ts-expect-error
