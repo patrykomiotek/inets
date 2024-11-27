@@ -69,6 +69,7 @@ const config = {
 }; // as const;
 
 type Config = typeof config;
+// type OnlyTimeout = Omit<Config, ''>
 
 config.apiUrl = 'https://evil.com';
 
@@ -103,3 +104,28 @@ type testUserOptional<T, K extends keyof T> = Partial<T> & Required<Pick<T, K>>;
 type MyTest<T extends { host: number }> = {
   [K in keyof Omit<T, 'host'>]?: T[K];
 } & { host: T['host'] };
+
+function f1(arg1: number) {
+  if (arg1 == 1) {
+    return { a: 1, b: 'hello' };
+  }
+  return { c: 4, d: 'world' };
+}
+
+type F1 = typeof f1;
+type T0 = ReturnType<typeof f1>; // typeof f1 -> Function
+// Równoważne z: { a: number; b: string; }
+
+function greet(name: string, age: number): void {}
+
+type GreetParams = Parameters<typeof greet>;
+// Równoważne z: [string, number]
+
+function createStreetLight<C extends string>(
+  colors: C[],
+  defaultColor?: NoInfer<C>,
+) {
+  // ...
+}
+createStreetLight(['red', 'yellow', 'green'], 'red'); // OK
+createStreetLight(['red', 'yellow', 'green'], 'blue'); // Error

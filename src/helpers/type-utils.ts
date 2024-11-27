@@ -1,4 +1,7 @@
 export type Expect<T extends true> = T;
+
+// Expect<Equal<SomeKeysRequired<X>, {host: string; apiKey?: string}>>
+
 export type ExpectTrue<T extends true> = T;
 export type ExpectFalse<T extends false> = T;
 export type IsTrue<T extends true> = T;
