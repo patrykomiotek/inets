@@ -71,3 +71,35 @@ const config = {
 type Config = typeof config;
 
 config.apiUrl = 'https://evil.com';
+
+// Napisz helper, który przyjmuje typ oraz ustawia
+// wskazane property (np. host) jako wymagane
+// a pozostałe mogą być opcjonalne
+
+type MyRequiredExcept<T, K extends keyof T> = {
+  [P in keyof T]: P extends K ? T[P] : T[P] | undefined;
+};
+type RequiredHost = MyRequiredExcept<Config1, 'host'>;
+
+type SomeKeysRequired<T, U extends keyof T> = {
+  [K in keyof T]?: T[K];
+} & { [K in U]-?: T[K] };
+
+const test: SomeKeysRequired<
+  { host: string; id: number; name: string },
+  'host' | 'name'
+> = {
+  host: 'fasdfasdfas',
+  name: 'anżej',
+  // id: 1, // optional
+};
+
+// with utility types
+// with Pick
+// type testUserOptional<T, K extends keyof T> = Partial<T> & Pick<T, K>;
+type testUserOptional<T, K extends keyof T> = Partial<T> & Required<Pick<T, K>>;
+
+// with Omit
+type MyTest<T extends { host: number }> = {
+  [K in keyof Omit<T, 'host'>]?: T[K];
+} & { host: T['host'] };
