@@ -67,6 +67,7 @@ class Example {
 
   // @isPositive -> throw new Error
   @log
+  // @cache
   someMethod(@logParameter arg: number, @logParameter arg2: string) {
     return arg * 2;
   }
