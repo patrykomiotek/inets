@@ -16,6 +16,8 @@ class Car {
   }
 }
 
+// typeof Car -> object
+
 // function createInstance<T extends new (...args: any[]) => any>(
 // function createInstance<T extends new (...args: any[]) => any>(constructor: T, ...constructorProps: any[]): InstanceType<T> {
 //   return new constructor(constructorProps);
@@ -29,17 +31,22 @@ class Car {
 function createInstance<T extends new (...args: any[]) => any>(
   constructor: T,
   ...props: ConstructorParameters<T>
+  // ): T { // object
 ): InstanceType<T> {
+  // object
   return new constructor(...props);
 }
 
 const personA = createInstance(Person, 'Jan', 34);
 const personB = createInstance(Person, 'Janina', 42);
 
-// personA.age
-// personA.name
+personA.age;
+personA.name;
 
 const car = createInstance(Car, 'polonez'); // Typ: Car
-// car.model
+
+type CarType = typeof Car;
+// const newCar: CarType = {};
+car.model;
 
 // const person = new Person('random');
