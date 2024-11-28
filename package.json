@@ -45,7 +45,8 @@
     "e-13-01-r": "tsx src/examples/13-project/01-safe-api-client.ts",
     "e-13-02-r": "tsx src/examples/13-project/02-pizza-delivery.ts",
     "e-13-04-r": "tsx src/examples/13-project/04-state-manager.ts",
-    "e-10-00-r": "tsx src/examples/10-as-const/00-examples.ts"
+    "e-10-00-r": "tsx src/examples/10-as-const/00-examples.ts",
+    "example-decorator": "tsx src/examples/06-decorators/01-example-decorator.ts"
   },
   "repository": {
     "type": "git",
