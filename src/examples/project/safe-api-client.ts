@@ -17,6 +17,7 @@
 import axios, { AxiosError } from 'axios';
 import { title } from 'process';
 import { z, ZodError } from 'zod';
+// import * Sentry from '@sentry/react'
 
 interface ApiSpec {
   getUser: {
@@ -30,14 +31,16 @@ interface ApiSpec {
 }
 
 // 1. validator
-const productSchema = z.object({
-  id: z.number().positive(),
-  name: z.string().min(3, { message: 'Name is required' }),
-  description: z.string(),
-});
+const productSchema = z.array(
+  z.object({
+    id: z.number().positive(),
+    name: z.string().min(3, { message: 'Name is required' }),
+    description: z.string(),
+  }),
+);
 
 // 2. type
-type ProductDto = z.infer<typeof productSchema>;
+type ProductsDto = z.infer<typeof productSchema>;
 
 type HttpMethod = 'GET' | 'POST';
 type RequestParams<T extends keyof ApiSpec> = ApiSpec[T]['request'];
@@ -64,10 +67,19 @@ class ApiClient {
     try {
       const response = await axios.get<ResponseType<K>>('https//example.com');
 
-      const data = productSchema.parse(response.data); // validator type | Error
+      // const data = productSchema.parse(response.data); // validator type | Error
+      const validationResult = productSchema.safeParse(response.data);
+      if (!validationResult.success) {
+        // log data inconsistency
+        // Sentry /
+        // Sentry.addContext(validationResult.data)
+        // Sentry.addTag('request')
+        // Sentry. //
+      }
 
       return response.data;
     } catch (error) {
+      // Setnry.captureException(error)
       if (error instanceof AxiosError) {
         // request error
       } else if (error instanceof ZodError) {
