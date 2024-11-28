@@ -104,7 +104,7 @@ class ApiClient {
 const client = new ApiClient('https://example.com');
 const response = client.request('GET', 'getUser', { id: 567 });
 
-// services
+// 2. services
 const fetchUser = async (id: number) => {
   // User['id']
   try {
