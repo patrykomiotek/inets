@@ -28,7 +28,7 @@ interface ApiSpec {
     response: { name: string; age: number };
   };
   createUser: {
-    methods: 'POST';
+    methods: 'POST' | 'PUT';
     request: { name: string; age: number };
     response: { id: number };
   };
@@ -118,7 +118,7 @@ const fetchUser = async (id: number) => {
   }
 };
 
-// const response = client.request('POST', 'createUser', {
-//   age: 123,
-//   name: 'barbara',
-// });
+const createUserResponse = client.request('POST', 'createUser', {
+  age: 123,
+  name: 'barbara',
+});
