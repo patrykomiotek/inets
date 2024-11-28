@@ -27,11 +27,24 @@ const Fish = CanSwim(Animal);
 const Duck = CanFly(CanSwim(Animal));
 
 const bird1 = new Bird('bird');
+
 const fish1 = new Fish('fish');
 
 const duck1 = new Duck('duck');
+
+if (duck1 instanceof Animal) {
+  console.log('duck1 is and instance of Animal');
+}
+if (duck1 instanceof Duck) {
+  console.log('duck1 is and instance of Duck');
+}
+// if (duck1 instanceof CanSwimCls) {
+//   console.log('duck1 is and instance of CanSwimCls');
+// }
 
 bird1.fly();
 fish1.swim();
 duck1.fly();
 duck1.swim();
+
+// Object.has
