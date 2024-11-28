@@ -19,12 +19,16 @@ import { title } from 'process';
 import { z, ZodError } from 'zod';
 // import * Sentry from '@sentry/react'
 
+type HttpMethod = 'GET' | 'POST';
+
 interface ApiSpec {
   getUser: {
+    methods: 'GET';
     request: { id: number };
     response: { name: string; age: number };
   };
   createUser: {
+    methods: 'POST';
     request: { name: string; age: number };
     response: { id: number };
   };
@@ -42,7 +46,7 @@ const productSchema = z.array(
 // 2. type
 type ProductsDto = z.infer<typeof productSchema>;
 
-type HttpMethod = 'GET' | 'POST';
+type AllowedMethod<T extends keyof ApiSpec> = ApiSpec[T]['methods'];
 type RequestParams<T extends keyof ApiSpec> = ApiSpec[T]['request'];
 type ResponseType<T extends keyof ApiSpec> = ApiSpec[T]['response'];
 
@@ -55,7 +59,7 @@ class ApiClient {
   constructor(private baseUrl: string) {}
 
   async request<K extends keyof ApiSpec>(
-    method: HttpMethod,
+    method: AllowedMethod<K>,
     endpoint: K,
     params?: RequestParams<K>,
   ) {
@@ -114,7 +118,7 @@ const fetchUser = async (id: number) => {
   }
 };
 
-// const response = client.request('GET', 'createUser', {
+// const response = client.request('POST', 'createUser', {
 //   age: 123,
 //   name: 'barbara',
 // });
