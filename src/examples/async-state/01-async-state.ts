@@ -78,10 +78,12 @@ type Products = {
   price: number;
 };
 
+type ResolvedUser = Awaited<Promise<User>>;
+
 // const { data, isError, isLoading } = await useApi<Products[]>('https://example.com/v1/products')
 // const { data, isError, isLoading } = await useApi<Products>('https://example.com/v1/products/543')
 
-console.log(data, isError, isLoading);
+// console.log(data, isError, isLoading);
 
 // 1
 // type ApiReturnedType<T> =
