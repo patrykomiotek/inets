@@ -58,10 +58,10 @@ type ResponseType<T extends keyof ApiSpec> = ApiSpec[T]['response'];
 class ApiClient {
   constructor(private baseUrl: string) {}
 
-  async request<K extends keyof ApiSpec>(
-    method: AllowedMethod<K>,
-    endpoint: K,
-    params?: RequestParams<K>,
+  async request<E extends keyof ApiSpec>(
+    method: AllowedMethod<E>,
+    endpoint: E,
+    params?: RequestParams<E>,
   ) {
     console.log('Wykonywanie requestu');
 
