@@ -14,6 +14,7 @@
  * 5. Obsługa Błędów: Zaimplementuj podstawową obsługę błędów
  * 6. Use case: Wykorzystaj klienta API z przykladowym adresem np. https://api.example.com i specyfikacją API.
  */
+import axios, { AxiosError } from 'axios';
 
 interface ApiSpec {
   getUser: {
@@ -40,7 +41,25 @@ class ApiClient {
   ) {
     console.log('Wykonywanie requestu');
 
-    return Promise.resolve({}) as Promise<ResponseType<K>>; //
+    // try {
+    //   const response = await fetch('https://example.com');
+    //   const data: ResponseType<K> = await response.json(); // any
+
+    //   return data;
+    //   // return data as Promise<ResponseType<K>>;
+    // } catch (error) {}
+
+    try {
+      const response = await axios.get<ResponseType<K>>('https//example.com');
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        // request
+      }
+      // else
+    }
+
+    // return Promise.resolve({}) as Promise<ResponseType<K>>; //
   }
 }
 
