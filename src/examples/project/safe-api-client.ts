@@ -15,6 +15,8 @@
  * 6. Use case: Wykorzystaj klienta API z przykladowym adresem np. https://api.example.com i specyfikacją API.
  */
 import axios, { AxiosError } from 'axios';
+import { title } from 'process';
+import { z, ZodError } from 'zod';
 
 interface ApiSpec {
   getUser: {
@@ -26,6 +28,16 @@ interface ApiSpec {
     response: { id: number };
   };
 }
+
+// 1. validator
+const productSchema = z.object({
+  id: z.number().positive(),
+  name: z.string().min(3, { message: 'Name is required' }),
+  description: z.string(),
+});
+
+// 2. type
+type ProductDto = z.infer<typeof productSchema>;
 
 type HttpMethod = 'GET' | 'POST';
 type RequestParams<T extends keyof ApiSpec> = ApiSpec[T]['request'];
@@ -51,10 +63,15 @@ class ApiClient {
 
     try {
       const response = await axios.get<ResponseType<K>>('https//example.com');
+
+      const data = productSchema.parse(response.data); // validator type | Error
+
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        // request
+        // request error
+      } else if (error instanceof ZodError) {
+        // zod validation error
       }
       // else
     }
