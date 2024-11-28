@@ -46,6 +46,11 @@ type HttpMethod = 'GET' | 'POST';
 type RequestParams<T extends keyof ApiSpec> = ApiSpec[T]['request'];
 type ResponseType<T extends keyof ApiSpec> = ApiSpec[T]['response'];
 
+// User -> UI -> services -> API client
+// 1. UI -> ui error -> fetchProducts() -> data | isError | isLoading
+// 2. services try/catch -> send to logger (Sentry)
+// 3. API client ->
+
 class ApiClient {
   constructor(private baseUrl: string) {}
 
@@ -65,9 +70,12 @@ class ApiClient {
     // } catch (error) {}
 
     try {
+      // 3. API
       const response = await axios.get<ResponseType<K>>('https//example.com');
 
       // const data = productSchema.parse(response.data); // validator type | Error
+
+      // 2. services
       const validationResult = productSchema.safeParse(response.data);
       if (!validationResult.success) {
         // log data inconsistency
