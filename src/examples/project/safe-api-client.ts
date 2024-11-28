@@ -103,6 +103,17 @@ class ApiClient {
 // usage:
 const client = new ApiClient('https://example.com');
 const response = client.request('GET', 'getUser', { id: 567 });
+
+// services
+const fetchUser = async (id: number) => {
+  // User['id']
+  try {
+    return await client.request('GET', 'getUser', { id });
+  } catch {
+    // Sentry log
+  }
+};
+
 // const response = client.request('GET', 'createUser', {
 //   age: 123,
 //   name: 'barbara',
