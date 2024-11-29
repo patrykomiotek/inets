@@ -13,9 +13,21 @@
  * Typy, które nie są tablicami
  */
 
+import { Equal, Expect } from '../../helpers/type-utils';
+
+type DeepFlatten<T> = // uzupełnij. Proszę :)
+
 // Przykłady uzycia
-type Result1 = DeepFlatten<number[]>; // Result1 = number
-type Result2 = DeepFlatten<number[][]>; // Result2 = number
-type Result3 = DeepFlatten<string[][][]>; // Result3 = string
-type Result4 = DeepFlatten<boolean | number[]>; // Result4 = boolean | number
-type Result5 = DeepFlatten<(number | string)[][]>; // Result5 = number | string
+type T1 = DeepFlatten<number[]>; // Result1 = number
+type T2 = DeepFlatten<number[][]>; // Result2 = number
+type T3 = DeepFlatten<string[][][]>; // Result3 = string
+type T4 = DeepFlatten<(boolean | number)[]>; // Result4 = boolean | number
+type T5 = DeepFlatten<(number | string)[][]>; // Result5 = number | string
+
+type test = [
+  Expect<Equal<T1, number>>,
+  Expect<Equal<T2, number>>,
+  Expect<Equal<T3, string>>,
+  Expect<Equal<T4, boolean | number>>,
+  Expect<Equal<T4, boolean | number>>,
+];
