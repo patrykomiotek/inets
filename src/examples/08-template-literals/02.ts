@@ -10,3 +10,8 @@ type ApiEndpoint = `${HttpMethod}/${string}`; // change me
 const endpoint1: ApiEndpoint = 'GET/users'; // Poprawne
 const endpoint2: ApiEndpoint = 'POST/create-user'; // Poprawne
 const endpoint3: ApiEndpoint = 'PATCH/update'; // Błąd - niepoprawna metoda HTTP
+
+type Endpoint = Record<ApiEndpoint, Function>;
+const enpoints: Endpoint = {
+  [endpoint1]: () => null, // fetchUsers()
+};
