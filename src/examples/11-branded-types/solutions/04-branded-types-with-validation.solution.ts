@@ -13,9 +13,13 @@ const createPositiveNumber = (arg: number) => {
 };
 
 // your code here
+function calculateSquareRoot(arg: PositiveNumber) {
+  return Math.sqrt(arg);
+}
 
 // example usage:
 const positiveNum = createPositiveNumber(5); // Powinno działać
 const invalidNum = createPositiveNumber(-3); // Powinno rzucić wyjątek
+
 calculateSquareRoot(positiveNum); // Powinno działać
 calculateSquareRoot(5); // Powinno zgłosić błąd kompilacji

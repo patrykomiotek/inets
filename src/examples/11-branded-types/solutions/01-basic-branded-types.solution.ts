@@ -14,7 +14,7 @@ type PhoneNumber = string & { readonly brand: unique symbol };
 
 // example usage:
 const email = 'user@example.com' as EmailAddress;
-const phone = '123456789' as PhoneNumber;
+const phone = '+48 123456789' as PhoneNumber;
 
 sendEmail(email); // Powinno działać
 sendEmail(phone); // Powinno zgłosić błąd kompilacji

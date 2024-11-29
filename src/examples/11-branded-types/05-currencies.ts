@@ -4,11 +4,12 @@
  * kwotę i docelową walutę.
  */
 
+// USD, GBP, EUR
 // your code here
 
 // ues cases:
-const usd = createCurrency(100, 'USD');
-const gbp = createCurrency(50, 'GBP');
+const usd = createCurrency(100, 'USD'); // -> USD
+const gbp = createCurrency(50, 'GBP'); // -> GBP
 // const pln = createCurrency(100, 'PLN');
 
 const eur = convertCurrency(usd, 'EUR', 0.85); // Konwersja USD na EUR
