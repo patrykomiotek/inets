@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-console.log(uuidv4());
+// console.log(uuidv4());
 
 const createUuidAndString = (suffix: string) => {
   return `${uuidv4()}-${suffix}`;
@@ -9,3 +9,5 @@ const createUuidAndString = (suffix: string) => {
 createUuidAndString(123);
 createUuidAndString('sdfsd');
 createUuidAndString(['a', 'b']);
+
+// console.log('This is console.log');
