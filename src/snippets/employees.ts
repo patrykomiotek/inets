@@ -15,14 +15,14 @@ const boss1: Boss = {
   team: 'A',
 };
 
-const superBoss: SuperBossOrSuperManager = {
+export const superBoss: SuperBossOrSuperManager = {
   id: 3,
   name: 'marcin',
   team: 'B',
   // zxcvbnmp: 'B',
 };
 
-const superManager: SuperBossOrSuperManager = {
+export const superManager: SuperBossOrSuperManager = {
   team: 'B',
   // zxcvbnmp: 'B',
 };
@@ -42,7 +42,7 @@ type MyPartial<T> = {
 };
 type PartialUser = MyPartial<User>;
 
-interface Config1 {
+export interface Config1 {
   host?: string;
   port?: number;
 }
@@ -118,7 +118,7 @@ type T0 = ReturnType<typeof f1>; // typeof f1 -> Function
 
 function greet(name: string, age: number): void {}
 
-type GreetParams = Parameters<typeof greet>;
+export type GreetParams = Parameters<typeof greet>;
 // Równoważne z: [string, number]
 
 function createStreetLight<C extends string>(
@@ -129,3 +129,5 @@ function createStreetLight<C extends string>(
 }
 createStreetLight(['red', 'yellow', 'green'], 'red'); // OK
 createStreetLight(['red', 'yellow', 'green'], 'blue'); // Error
+
+export class NewCls {}

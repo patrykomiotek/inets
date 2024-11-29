@@ -29,7 +29,7 @@ type Res<T> =
       isError: true;
     };
 
-const getData = async <T>(load: LoadFunction<T>): Promise<Res<T>> => {
+export const getData = async <T>(load: LoadFunction<T>): Promise<Res<T>> => {
   // let isLoading = true;
   // let isError = false;
   // let data: T | undefined;

@@ -68,6 +68,7 @@ type ReadonlyExcept<T, K extends keyof T> = {
 interface Task {
   title: string;
   completed: boolean;
+  description: string;
 }
 
 type EditableTask = ReadonlyExcept<Task, 'completed'>;
