@@ -1,4 +1,4 @@
-/**
+/**src/examples/09-infer/06-deep-flatten.ts
  * Stwórz typ generyczny DeepFlatten, który spłaszcza wielowymiarowe tablice
  * do jednowymiarowej tablicy. Typ ten powinien działać rekurencyjnie, czyli spłaszczać
  * tablice o dowolnej głębokości.
@@ -13,13 +13,9 @@
  * Typy, które nie są tablicami
  */
 
-import { Equal, Expect } from '../../helpers/type-utils';
+import { Equal, Expect } from '../../../helpers/type-utils';
 
-// type DeepFlatten<T> = T extends (infer U)[] ? DeepFlatten<U> : T;
-type DeepFlatten<T> = T extends Array<infer U> ? DeepFlatten<U> : T;
-
-// type DeepFlatten<T> = T extends (infer E)[] ? (E extends (infer U)[] ? DeepFlatten<U> : E) : T;
-// type DeepFlatten<T> = T extends Array<infer E> ? DeepFlatten<E> : T;
+type DeepFlatten<T> = T extends (infer U)[] ? DeepFlatten<U> : T;
 
 // Przykłady uzycia
 type T1 = DeepFlatten<number[]>; // Result1 = number
