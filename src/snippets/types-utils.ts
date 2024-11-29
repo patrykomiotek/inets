@@ -56,3 +56,33 @@ type NestedUserDto = {
 };
 
 type ReadonlyNestedUser = DeepReadonly<NestedUserDto>;
+
+// Task: Create a mapped type ReadonlyExcept<T, K> that makes all properties of an object type readonly except for the specified keys.
+type ReadonlyExcept<T, K extends keyof T> = {
+  readonly [P in Exclude<keyof T, K>]: T[P];
+} & {
+  [P in K]: T[P];
+};
+
+// Example usage:
+interface Task {
+  title: string;
+  completed: boolean;
+}
+
+type EditableTask = ReadonlyExcept<Task, 'completed'>;
+// EditableTask is { readonly title: string; completed: boolean; }
+
+// Create a utility type OmitKeys<T, K> that removes specified keys from an object type.
+type OmitKeys<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? never : P]: T[P];
+};
+
+// Example usage:
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+type ProductWithoutPrice = OmitKeys<Product, 'price'>; // { id: number; name: string; }
