@@ -1,25 +1,29 @@
 {
+  // "extends": ["./tsconfig.base"],
   "compilerOptions": {
     "types": ["vitest/globals"],
 
-    "target": "ES2020",
+    // "target": "ES2020",
+    "target": "ES2018", // FE: ES6+, Node: ESNext
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler", // FE: bundler, Node: node/nodenext
+    // "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    // "noEmit": true,
+    "outDir": "./dist",
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    // "noImplicitAny": false,
 
     "experimentalDecorators": true,   /* Enable experimental support for legacy experimental decorators. */
     "emitDecoratorMetadata": true,    /* Emit design-type metadata for decorated declarations in source files. */
