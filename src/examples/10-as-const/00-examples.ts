@@ -19,6 +19,7 @@ const COLORS = {
 } as const;
 
 type Color = (typeof COLORS)[keyof typeof COLORS]; // typ: "#FF0000" | "#00FF00" | "#0000FF"
+const myGreen: Color = '#00FF00';
 
 const x = 5;
 const y = x as const; // Błąd: A 'const' assertion can only be applied to a string, number, boolean, array, or object literal.
@@ -40,3 +41,12 @@ type ActionType = (typeof actionTypes)[keyof typeof actionTypes]; // "ADD_TODO" 
 function createAction(type: ActionType) {
   return { type };
 }
+
+// createAction('REMOVE_TODO');
+
+const nested = {
+  arr: [1, 2, 3],
+  name: 'John',
+} as const;
+
+nested.arr.push(4); // nie działa i nie powinno działać
